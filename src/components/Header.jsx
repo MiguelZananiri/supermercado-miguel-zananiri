@@ -20,6 +20,9 @@ function Header() {
                     <li className="nav-item">
                         <Link to="/faq" className="nav-link active" aria-current="page">Preguntas frecuentes</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/agregar" className="nav-link active" aria-current="page">Agregar producto</Link>
+                    </li>
                 </ul>
             </div>
         </div>
