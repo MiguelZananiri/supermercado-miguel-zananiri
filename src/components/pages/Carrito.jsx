@@ -1,7 +1,6 @@
 import "./Carrito.css"
 import { useProductos } from "../../context/ProductosContext"
 import { useCarrito } from "../../context/CarritoContext"
-import { useState } from "react"
 
 function Carrito() {
     const { productos, setProductos } = useProductos();
@@ -11,8 +10,6 @@ function Carrito() {
         cambiarCantidad,
         vaciarCarrito
     } = useCarrito();
-
-    const [cantidad] = useState({});
 
     const comprar = () => {
         if (productosCarrito.length === 0) return;
@@ -51,14 +48,16 @@ function Carrito() {
         )
         .map(producto => ({
             ...producto,
-            cantidad: carrito.find(item => item.id === producto.id).cantidad
+            cantidad: carrito.find(
+                item => item.id === producto.id
+            ).cantidad
         }));
 
     const total = productosCarrito.reduce(
         (acumulado, producto) =>
-            acumulado + producto.precio * cantidad[producto.id] ?? 1,
+            acumulado + producto.precio * producto.cantidad,
         0
-    )
+    );
 
     return (
         <main className="tw:min-h-screen tw:bg-gray-950 tw:px-4 tw:py-10 tw:text-gray-100">

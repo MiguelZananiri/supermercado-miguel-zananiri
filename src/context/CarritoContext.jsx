@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { leerStorage, guardarStorage } from "../utils/storage";
 
 const CarritoContext = createContext(null);
@@ -13,15 +13,17 @@ function carritoReducer(estado, accion) {
             return [...estado, { id: accion.id, cantidad: 1 }];
 
         case "CAMBIAR_CANTIDAD":
-            return estado.map(item => {
-                item.id === accion.id ? {
-                    ...item,
-                    cantidad: Math.min(
-                        100, Math.max(1, item.cantidad + accion.cambio)
-                    )
-                }
-                :item
-            })
+            return estado.map(item =>
+                item.id === accion.id
+                    ? {
+                        ...item,
+                        cantidad: Math.min(
+                            100,
+                            Math.max(1, item.cantidad + accion.cambio)
+                        )
+                    }
+                    : item
+            );
 
         case "VACIAR":
             return [];
@@ -35,10 +37,14 @@ function cargarCarrito() {
     const guardado = leerStorage("carrito", []);
 
     if (!Array.isArray(guardado)) {
-        return guardado.map(item => 
-            typeof item === "object" && item !== null ? item : { id: item, cantidad: 1 }
-        )
+        return [];
     }
+
+    return guardado.map(item =>
+        typeof item === "object" && item !== null
+            ? { id: item.id, cantidad: item.cantidad ?? 1 }
+            : { id: item, cantidad: 1 }
+    );
 }
 
 export function CarritoProvider({ children }) {
@@ -74,9 +80,9 @@ export function CarritoProvider({ children }) {
     };
 
     const productoEnCarrito = (producto) => {
-        return carrito.includes(producto.id);
+        return carrito.some(item => item.id === producto.id);
     };
-    
+
     return (
         <CarritoContext.Provider value={{ carrito, agregarCarrito, cambiarCantidad, productoEnCarrito, vaciarCarrito }} >
             {children}
