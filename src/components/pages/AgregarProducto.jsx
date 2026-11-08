@@ -1,31 +1,50 @@
 import { useState } from "react";
+import { useProductos } from "../../context/ProductosContext"
 
-function AgregarProducto({ productos, setProductos }) {
+function AgregarProducto() {
+    const { productos, setProductos } = useProductos();
+
+    const [formulario, setFormulario] = useState({
+        nombre: "",
+        marca: "",
+        tipo: "",
+        precio: "",
+        stock: ""
+    });
     const [enviado, setEnviado] = useState(false);
+
+    const cambiarCampo = (e) => {
+        const { name, value } = e.target;
+
+        setFormulario({
+            ...formulario,
+            [name]: value
+        });
+    }
 
     // agregar juego a la memoria
     const agregar = (e) => {
         e.preventDefault();
-        const storage = JSON.parse(localStorage.getItem("nuevoProducto")) || [];
 
-        const id = Math.max(0, ...productos.map((producto) => Number(producto.id)), ...storage.map((producto) => Number(producto.id))) + 1;
+        const producto = {
+            id: Math.max(0, ...productos.map(p => Number(p.id))) + 1,
+            nombre: formulario.nombre.trim(),
+            marca: formulario.marca.trim(),
+            tipo: formulario.tipo.trim(),
+            precio: Number(formulario.precio),
+            stock: Number(formulario.stock)
+        };
 
-        const nombre = document.getElementById("nombre").value;
-        const marca = document.getElementById("marca").value;
-        const tipo = document.getElementById("tipo").value;
-        const precio = document.getElementById("precio").value;
-        const producto = { id, nombre, marca, tipo, precio };
+        setProductos(actuales => [...actuales, producto]);
 
-        storage.push(producto);
-        localStorage.setItem("nuevoProducto", JSON.stringify(storage));
+        setFormulario({
+            nombre: "",
+            marca: "",
+            tipo: "",
+            precio: "",
+            stock: ""
+        });
 
-        setProductos((anteriores) => [...anteriores, producto]);
-
-        mensajeEnvio(e);
-    }
-
-    function mensajeEnvio(e) {
-        e.preventDefault();
         setEnviado(true);
     }
 
@@ -52,6 +71,8 @@ function AgregarProducto({ productos, setProductos }) {
                                 type="text"
                                 name="nombre"
                                 required
+                                value={formulario.nombre}
+                                onChange={cambiarCampo}
                                 className="tw:bg-gray-800 tw:text-white tw:placeholder-white-800 tw:w-full tw:border tw:border-gray-300 tw:rounded-md tw:p-3"
                                 autoComplete="off" />
                         </div>
@@ -62,6 +83,8 @@ function AgregarProducto({ productos, setProductos }) {
                                 type="text"
                                 name="marca"
                                 required
+                                value={formulario.marca}
+                                onChange={cambiarCampo}
                                 className="tw:bg-gray-800 tw:text-white tw:placeholder-white-800 tw:w-full tw:border tw:border-gray-300 tw:rounded-md tw:p-3"
                                 autoComplete="off" />
                         </div>
@@ -72,6 +95,8 @@ function AgregarProducto({ productos, setProductos }) {
                                 type="text"
                                 name="tipo"
                                 required
+                                value={formulario.tipo}
+                                onChange={cambiarCampo}
                                 className="tw:bg-gray-800 tw:text-white tw:placeholder-white-800 tw:w-full tw:border tw:border-gray-300 tw:rounded-md tw:p-3"
                                 autoComplete="off" />
                         </div>
@@ -82,9 +107,23 @@ function AgregarProducto({ productos, setProductos }) {
                                 type="number"
                                 name="precio"
                                 required
+                                value={formulario.precio}
+                                onChange={cambiarCampo}
                                 className="tw:bg-gray-800 tw:text-white tw:placeholder-white-800 tw:w-full tw:border tw:border-gray-300 tw:rounded-md tw:p-3"
                                 autoComplete="off" />
                         </div>
+                            <div>
+                                <label htmlFor="stock">Stock</label>
+                                <input
+                                id="stock"
+                                type="number"
+                                name="stock"
+                                required
+                                value={formulario.stock}
+                                onChange={cambiarCampo}
+                                className="tw:bg-gray-800 tw:text-white tw:placeholder-white-800 tw:w-full tw:border tw:border-gray-300 tw:rounded-md tw:p-3"
+                                autoComplete="off" />
+                            </div>
                         <div className="tw:flex tw:justify-center">
                             <button
                                 type="submit"

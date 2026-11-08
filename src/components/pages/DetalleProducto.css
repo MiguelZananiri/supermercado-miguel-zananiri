@@ -1,0 +1,14 @@
+#agregar-carrito {
+    display: flex;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: large;
+    background-color: #497e00;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+#agregar-carrito:disabled {
+    background-color: #8b8b8b;
+}

@@ -1,5 +1,6 @@
 import "./Header.css"
-import { NavLink } from "react-router-dom"
+import { FaShoppingCart } from "react-icons/fa"
+import { NavLink, Link } from "react-router-dom"
 
 function Header() {
     return <div className="header navbar navbar-expand-sm navbar-dark fixed-bottom">
@@ -47,6 +48,8 @@ function Header() {
                         >Agregar producto
                         </NavLink>
                     </li>
+
+                     <Link className="boton-carrito" to="/carrito" ><FaShoppingCart />Carrito</Link>
                 </ul>
             </div>
         </div>

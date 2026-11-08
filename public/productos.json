@@ -4,34 +4,39 @@
         "nombre": "Pan de molde",
         "marca": "Bimbo",
         "precio": 1100,
-        "tipo": "Comestible"
+        "tipo": "Comestible",
+        "stock": 10
     },
     {
         "id": 2,
         "nombre": "Cafe",
         "marca": "Nescafe",
         "precio": 1900,
-        "tipo": "Bebestible"
+        "tipo": "Bebestible",
+        "stock": 10
     },
     {
         "id": 3,
         "nombre": "Esponja",
         "marca": "Virutex",
         "precio": 2140,
-        "tipo": "Utensilio de limpieza"
+        "tipo": "Limpieza",
+        "stock": 10
     },
     {
         "id": 4,
         "nombre": "Jabon",
         "marca": "Protex",
         "precio": 2500,
-        "tipo": "Utensilio de higiene"
+        "tipo": "Higiene",
+        "stock": 10
     },
     {
         "id": 5,
         "nombre": "Camisa blanca",
         "marca": "Jack & Jones",
         "precio": 11300,
-        "tipo": "Ropa"
+        "tipo": "Ropa",
+        "stock": 10
     }
 ]
