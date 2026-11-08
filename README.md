@@ -8,6 +8,19 @@ Permitiendo al usuario ver el inventario de productos, ver la informacion de la 
 
 Este proyecto se ha creado con la implementacion de React Router para cambiar entre paginas y tailwind para darle una apariencia mas agradable.
 
+## Tecnologias utilizadas
+
+- HTML5: Cuerpo de la pagina.
+- CSS: Diseño y estilo.
+- JavaScript: Logica y funcionalidades.
+- React: Desarrollo de componentes e interfaces dinamicas.
+- React Router: Enrutamiento dinamico en la navegacion.
+- React Context: Distribucion del estado global
+- Vite: Herramienta de desarrollo y compilacion del proyecto.
+- Bootstrap: Componentes de diseño responsivo.
+- JSON: Almacenamiento de datos.
+- Tailwind: Framework CSS de diseño
+
 ## Inicio
 
 La pagina de inicio muestra el inventario de productos disponibles en el supermercado.
@@ -18,6 +31,8 @@ Dando informacion como:
 - Marca del producto
 - Tipo de producto
 - Precio
+
+Ademas, se implemento una lista desplegable donde puedes filtrar los tipos de productos.
 
 ## Quienes somos
 
@@ -49,6 +64,25 @@ Para agregar un producto hay que introducir lo siguiene:
 - Precio
 
 Una vez completado el formulario se confirma con el boton de agregar producto, y una vez agregado aparecera en el inventario.
+
+## Detalle producto
+
+Al darle click a algun producto del inventario el usuario pasara a los detalles del producto.
+
+Donde estara la informacion como:
+
+- Nombre
+- Marca
+- Tipo
+- Precio
+
+Ademas, tendra la opcion de agregar el producto al carrito, guardando el producto en la memoria para la pagina del carrito de compras.
+
+## Carrito
+
+En la pagina de carrito se mostrara los productos agregados al carrito, permitiendole aumentar o reducir la cantidad para comprar, incluso cambiando su precio por los demas productos y su cantidad.
+
+Una vez se de click al boton de comprar, la cantidad de productos disminuira en el inventario. 
 
 ## Menu de navegacion
 
