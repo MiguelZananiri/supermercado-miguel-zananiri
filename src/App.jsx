@@ -7,7 +7,7 @@ import AgregarProducto from './components/pages/AgregarProducto'
 import DetalleProducto from './components/pages/DetalleProducto'
 import Carrito from './components/pages/Carrito'
 import './App.css'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { HashRouter as Router, Route, Routes} from 'react-router-dom'
 
 function App() {
 
